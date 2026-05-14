@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Menu Profil -->
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Profil Saya"
+        app:showAsAction="never" />
+
+    <!-- Menu Pengaturan -->
+    <item
+        android:id="@+id/menu_settings"
+        android:title="Pengaturan"
+        app:showAsAction="never" />
+
+    <!-- Menu Kontak Kami -->
+    <item
+        android:id="@+id/menu_contact"
+        android:title="Kontak Kami"
+        app:showAsAction="never" />
+
+</menu>

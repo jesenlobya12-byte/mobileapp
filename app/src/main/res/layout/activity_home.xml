@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:id="@+id/tvWelcomeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SELAMAT DATANG!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Tombol Google Maps -->
+    <Button
+        android:id="@+id/btnOpenMaps"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Buka Google Maps"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcomeTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tombol Kamera -->
+    <Button
+        android:id="@+id/btnOpenCamera"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Buka Kamera"
+        app:layout_constraintTop_toBottomOf="@id/btnOpenMaps"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tombol Kirim Teks -->
+    <Button
+        android:id="@+id/btnShareText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Kirim Teks ke Aplikasi Lain"
+        app:layout_constraintTop_toBottomOf="@id/btnOpenCamera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tombol Berita/Sosmed -->
+    <Button
+        android:id="@+id/btnOpenNews"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Buka Berita (Web)"
+        app:layout_constraintTop_toBottomOf="@id/btnShareText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
