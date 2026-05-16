@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-     <application
+    <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.mobileapp">
 
-        <!-- 1. Daftarkan LoginActivity dan jadikan LAUNCHER -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -27,14 +26,12 @@
             android:exported="false" />
 
         <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
 
-        <!-- 2. Jika MainActivity tidak dipakai, hapus bagian ini atau biarkanexported false -->
+        <activity
+            android:name=".ImplicitIntentActivity"
+            android:exported="false" />
 
     </application>
 </manifest>

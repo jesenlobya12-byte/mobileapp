@@ -5,8 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     tools:context=".HomeActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Dashboard"
+        app:titleTextColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvWelcomeTitle"
@@ -15,52 +23,73 @@
         android:text="SELAMAT DATANG!"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <!-- Tombol Google Maps -->
     <Button
         android:id="@+id/btnOpenMaps"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
         android:text="Buka Google Maps"
         app:layout_constraintTop_toBottomOf="@id/tvWelcomeTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tombol Kamera -->
     <Button
         android:id="@+id/btnOpenCamera"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
         android:text="Buka Kamera"
         app:layout_constraintTop_toBottomOf="@id/btnOpenMaps"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tombol Kirim Teks -->
     <Button
         android:id="@+id/btnShareText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Kirim Teks ke Aplikasi Lain"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:text="Kirim Teks"
         app:layout_constraintTop_toBottomOf="@id/btnOpenCamera"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tombol Berita/Sosmed -->
     <Button
         android:id="@+id/btnOpenNews"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
         android:text="Buka Berita (Web)"
         app:layout_constraintTop_toBottomOf="@id/btnShareText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aktivitas Terbaru:"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/btnOpenNews"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAktivitas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tvListTitle"
+        app:layout_constraintBottom_toTopOf="@id/btnLogout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -68,7 +97,7 @@
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

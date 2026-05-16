@@ -4,95 +4,93 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.Menu // Import Tambahan
-import android.view.MenuItem // Import Tambahan
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast // Import Tambahan
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class HomeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        // 1. Pastikan layout sudah benar
         setContentView(R.layout.activity_home)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        // 2. Setup Toolbar (Gunakan try-catch agar jika ID salah tidak crash)
+        try {
+            val toolbar = findViewById<Toolbar>(R.id.toolbar)
+            if (toolbar != null) {
+                setSupportActionBar(toolbar)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
+        // 3. Inisialisasi Tombol dengan Safe Call
         val btnOpenMaps = findViewById<Button>(R.id.btnOpenMaps)
         val btnOpenCamera = findViewById<Button>(R.id.btnOpenCamera)
         val btnShareText = findViewById<Button>(R.id.btnShareText)
         val btnOpenNews = findViewById<Button>(R.id.btnOpenNews)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
 
-        btnOpenMaps.setOnClickListener {
-            val gmmIntentUri = Uri.parse("geo:-6.2088,106.8456?q=Jakarta")
-            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-            mapIntent.setPackage("com.google.android.apps.maps")
-            startActivity(mapIntent)
+        btnOpenMaps?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=Jakarta"))
+            startActivity(intent)
         }
 
-        btnOpenCamera.setOnClickListener {
-            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivity(cameraIntent)
+        btnOpenCamera?.setOnClickListener {
+            startActivity(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
         }
 
-        btnShareText.setOnClickListener {
-            val sendIntent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Halo! Ini adalah pesan dari aplikasi saya.")
+        btnShareText?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, "Halo dari aplikasi saya!")
             }
-            val shareIntent = Intent.createChooser(sendIntent, "Kirim via:")
-            startActivity(shareIntent)
+            startActivity(Intent.createChooser(intent, "Share via"))
         }
 
-        btnOpenNews.setOnClickListener {
-            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.detik.com"))
-            startActivity(webIntent)
+        btnOpenNews?.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com")))
         }
 
-        btnLogout.setOnClickListener {
+        btnLogout?.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
         }
+
+        // 4. Setup RecyclerView
+        val rvAktivitas = findViewById<RecyclerView>(R.id.rvAktivitas)
+        if (rvAktivitas != null) {
+            val listData = listOf("Tugas 1", "Tugas 2", "Tugas 3", "Tugas 4")
+            rvAktivitas.layoutManager = LinearLayoutManager(this)
+            rvAktivitas.adapter = AktivitasAdapter(listData)
+        }
     }
 
-    // --- TAMBAHKAN KODE MENU DI BAWAH INI ---
-
-    // 1. Menampilkan Menu (Inflate XML ke UI)
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
-    // 2. Menangani Klik pada Item Menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.menu_profile -> {
-                Toast.makeText(this, "Membuka Profil Pengguna", Toast.LENGTH_SHORT).show()
-                return true
+                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+                true
             }
             R.id.menu_settings -> {
-                // Membuka Pengaturan HP (Implicit Intent)
-                val intent = Intent(android.provider.Settings.ACTION_SETTINGS)
-                startActivity(intent)
-                return true
+                startActivity(Intent(android.provider.Settings.ACTION_SETTINGS))
+                true
             }
-            R.id.menu_contact -> {
-                // Membuka WhatsApp/Kontak (Implicit Intent)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/628123456789"))
-                startActivity(intent)
-                return true
-            }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }
