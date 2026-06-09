@@ -1,5 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services) // Plugin Firebase Anda
+
+    // PAKSA MENGGUNAKAN ID BAHASA ASLI KOTLIN TANPA ALIAS:
+    id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 android {
@@ -41,6 +45,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // 3. Tambahkan library Firebase BoM (Bill of Materials) dan layanannya secara langsung
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
